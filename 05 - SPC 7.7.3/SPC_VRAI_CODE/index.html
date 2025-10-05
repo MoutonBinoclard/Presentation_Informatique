@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPC V7 : Live Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
+    <style>
+        /* Additional heading styles not in main CSS */
+        h3 { 
+            text-align: center; 
+            color: var(--text-muted); 
+        }
+        h4 { 
+            text-align: center; 
+            color: var(--text-light); 
+        }
+        
+        /* Modal styles - specific to this page */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px var(--shadow-dark);
+            background: var(--bg-primary);
+        }
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: var(--text-white);
+            cursor: pointer;
+            user-select: none;
+            z-index: 1001;
+        }
+        
+        /* Button styles - specific to this page */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+        }
+        .btn {
+            width: 200px;
+            padding: 12px 20px;
+            color: var(--text-white);
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-download {
+            background: var(--bg-button);
+        }
+        .btn-download:hover {
+            background: var(--bg-button-hover);
+        }
+        .btn-view {
+            background: var(--bg-button);
+        }
+        .btn-view:hover {
+            background: var(--bg-button-hover);
+        }
+        
+        /* Search box styles */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            align-items: center;
+        }
+        
+        .search-box {
+            width: 300px;
+            padding: 10px 15px;
+            border: 2px solid var(--border-secondary);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .search-box:focus {
+            border-color: var(--bg-column-2);
+        }
+        
+        .search-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .search-results {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SPC V7 - Live leaderboard</h1>
+    <h3>Don't forget to refresh to get the lastest results (you can also shift + scroll on the scores to scroll sideway)</h3>
+    <h4>Leaderboard may not be final</h4>
+    <div class="images">
+        <img src="/exports/graph_leaderboard.png" alt="Image 1" class="enlargeable">
+        <img src="/exports/graph_average_placement.png" alt="Image 2" class="enlargeable">
+    </div>
+    <!-- Modal for enlarged image -->
+    <div class="modal" id="img-modal">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <img id="modal-img" src="" alt="Large view">
+    </div>
+    <div class="button-container">
+        <button class="btn btn-download" id="download-btn">Download Leaderboard Data</button>
+    </div>
+    <div class="search-container">
+        <label class="search-label" for="search-input">Search in names:</label>
+        <input type="text" id="search-input" class="search-box" placeholder="Type to highlight rows...">
+        <span id="search-results" class="search-results"></span>
+    </div>
+    <div class="table-container">
+        <table id="classement-table"></table>
+    </div>
+    <script>
+        // Fetch and parse the leaderboard_full.csv file
+        fetch('/exports/leaderboard_full.csv')
+            .then(response => response.text())
+            .then(text => {
+                // Split into lines and filter out empty/comment lines
+                const lines = text.trim().split('\n').filter(line => line.trim() !== '' && !line.startsWith('//'));
+                if (lines.length === 0) return;
+                // Parse CSV header
+                const headers = lines[0].split(',');
+                const table = document.getElementById('classement-table');
+                // Create table header
+                let thead = '<thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
+                // Create table body
+                let tbody = '<tbody>';
+                for (let i = 1; i < lines.length; i++) {
+                    // Split CSV row (no quoted fields expected)
+                    const cols = lines[i].split(',');
+                    tbody += '<tr>' + cols.map(c => `<td>${c}</td>`).join('') + '</tr>';
+                }
+                tbody += '</tbody>';
+                table.innerHTML = thead + tbody;
+                
+                // Set up sticky columns positioning
+                setTimeout(() => {
+                    const firstColumn = table.querySelector('th:nth-child(1)');
+                    const secondColumn = table.querySelector('th:nth-child(2)');
+                    const thirdColumn = table.querySelector('th:nth-child(3)');
+                    
+                    if (firstColumn && secondColumn && thirdColumn) {
+                        const firstColumnWidth = firstColumn.offsetWidth;
+                        const secondColumnWidth = secondColumn.offsetWidth;
+                        const thirdColumnWidth = thirdColumn.offsetWidth;
+                        
+                        // Position column 2 after column 1
+                        const secondColumnCells = table.querySelectorAll('th:nth-child(2), td:nth-child(2)');
+                        secondColumnCells.forEach(cell => {
+                            cell.style.left = firstColumnWidth + 'px';
+                        });
+                        
+                        // Position column 3 after columns 1 and 2
+                        const thirdColumnCells = table.querySelectorAll('th:nth-child(3), td:nth-child(3)');
+                        thirdColumnCells.forEach(cell => {
+                            cell.style.left = (firstColumnWidth + secondColumnWidth) + 'px';
+                        });
+                        
+                        // Position column 4 after columns 1, 2, and 3
+                        const fourthColumnCells = table.querySelectorAll('th:nth-child(4), td:nth-child(4)');
+                        fourthColumnCells.forEach(cell => {
+                            cell.style.left = (firstColumnWidth + secondColumnWidth + thirdColumnWidth) + 'px';
+                        });
+                    }
+                }, 10);
+                
+                // Easter egg: Check for special value in first column
+                setTimeout(() => {
+                    const rows = table.querySelectorAll('tbody tr');
+                    rows.forEach(row => {
+                        const firstCell = row.querySelector('td:nth-child(1)');
+                        if (firstCell && firstCell.textContent.trim() === '53F9EFB9912B04AE') {
+                            // Apply easter egg style to only the first cell
+                            firstCell.classList.add('easter-egg');
+                            
+                            // Store original text and add hover text change effect
+                            const originalText = firstCell.textContent;
+                            
+                            firstCell.addEventListener('mouseenter', () => {
+                                firstCell.textContent = 'The dev x)';
+                            });
+                            
+                            firstCell.addEventListener('mouseleave', () => {
+                                firstCell.textContent = originalText;
+                            });
+                        }
+                    });
+                }, 20);
+                
+                // Search functionality for second column
+                const searchInput = document.getElementById('search-input');
+                const searchResults = document.getElementById('search-results');
+                
+                searchInput.addEventListener('input', function() {
+                    const searchText = this.value.toLowerCase().trim();
+                    const tableRows = table.querySelectorAll('tbody tr');
+                    let foundCount = 0;
+                    
+                    // Clear previous highlights
+                    tableRows.forEach(row => {
+                        row.classList.remove('search-highlight');
+                    });
+                    
+                    // If search text is empty, clear results and don't highlight anything
+                    if (searchText === '') {
+                        searchResults.textContent = '';
+                        return;
+                    }
+                    
+                    // Highlight rows that contain search text in second column
+                    tableRows.forEach(row => {
+                        const secondCell = row.querySelector('td:nth-child(2)');
+                        if (secondCell && secondCell.textContent.toLowerCase().includes(searchText)) {
+                            row.classList.add('search-highlight');
+                            foundCount++;
+                        }
+                    });
+                    
+                    // Update results counter
+                    if (foundCount === 0) {
+                        searchResults.textContent = 'No results found';
+                        searchResults.style.color = 'var(--text-light)';
+                    } else if (foundCount === 1) {
+                        searchResults.textContent = '1 result found';
+                        searchResults.style.color = 'var(--text-muted)';
+                    } else {
+                        searchResults.textContent = `${foundCount} results found`;
+                        searchResults.style.color = 'var(--text-muted)';
+                    }
+                });
+                
+                // Prevent scroll chaining from table to page
+                const tableContainer = document.querySelector('.table-container');
+                tableContainer.addEventListener('wheel', function(e) {
+                    const isAtTop = this.scrollTop === 0;
+                    const isAtBottom = this.scrollTop >= (this.scrollHeight - this.clientHeight);
+                    
+                    // Check if it's horizontal scrolling (Shift+scroll or horizontal wheel)
+                    const isHorizontalScroll = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
+                    
+                    // Only prevent vertical scrolling when at limits, but allow horizontal scrolling
+                    if (!isHorizontalScroll && ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom))) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+            });
+
+        // Image modal logic
+        document.querySelectorAll('.enlargeable').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                const modal = document.getElementById('img-modal');
+                const modalImg = document.getElementById('modal-img');
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modal-close').onclick = function() {
+            document.getElementById('img-modal').classList.remove('active');
+        };
+        // Close modal on click outside image
+        document.getElementById('img-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        // Download button functionality
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const link = document.createElement('a');
+            link.href = '/exports/leaderboard_full.csv';
+            link.download = 'leaderboard_full.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>

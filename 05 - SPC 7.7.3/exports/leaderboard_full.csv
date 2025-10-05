@@ -1,0 +1,31 @@
+ID_player,Name,Rank,Score,Rounds Played,Total Kills,Total Wins,Kill Avg,Plac Avg,Max Kills,R1 P,R1 K,R1 Mk,R1 NbPl,R1 S,R2 P,R2 K,R2 Mk,R2 NbPl,R2 S,R3 P,R3 K,R3 Mk,R3 NbPl,R3 S,R4 P,R4 K,R4 Mk,R4 NbPl,R4 S,R5 P,R5 K,R5 Mk,R5 NbPl,R5 S
+78AC5DEAB433C5B6,Tryhox6348,1,73.41,5,10,1,2.0,4.0,3,5,3,False,20,14.04,2,2,False,20,17.11,6,1,False,21,9.5,1,1,False,22,18.71,6,3,False,24,14.05
+B5D29C1EC6F0757F,TTV/7zayets,2,72.51,5,9,1,1.8,4.2,4,6,0,False,20,6.97,1,3,True,20,22.97,3,1,False,21,13.28,8,1,False,22,8.25,3,4,True,24,21.03
+447C4DDBA880376B,sub to m44ndy on youtube,3,60.92,5,12,0,2.4,7.2,5,3,5,True,20,20.99,12,0,False,20,3.58,11,2,False,21,8.55,5,2,False,22,12.74,5,3,False,24,15.06
+94FF948419FF1AF7,SECret_Nox,4,57.81,4,8,1,2.0,4.25,3,0,0,False,0,0,5,2,False,20,12.25,1,3,False,21,22.18,7,2,False,22,10.96,4,1,False,24,12.42
+7B215D4B262D1349,EggsSkrambled,5,56.75,5,9,0,1.8,8.4,3,10,0,False,20,4.46,18,1,False,20,3.79,2,3,False,21,19.26,2,2,False,22,17.78,10,3,False,24,11.46
+FD8027B60B98C191,GUGU GAGA,6,51.22,4,10,0,2.5,6.75,4,0,0,False,0,0,6,2,False,20,11.3,7,4,True,21,15.4,3,3,False,22,17.43,11,1,False,24,7.08
+4448A7AC631FAC1B,roink39438929048204832,7,43.21,5,7,0,1.4,9.0,3,7,3,False,20,12.3,13,0,False,20,3.19,5,2,False,21,12.5,13,1,False,22,5.9,7,1,False,24,9.32
+7C1569D98EDC54D,zzzIncrpt,8,33.93,3,3,1,1.0,6.67,2,0,0,False,0,0,0,0,False,0,0,8,2,False,21,10.08,11,1,False,22,6.71,1,0,False,24,17.15
+A1ADC03DAFBA46BB,Violet,9,26.15,5,4,0,0.8,13.6,2,9,0,False,20,4.97,9,2,False,20,9.29,16,0,False,21,2.35,12,2,False,22,8.33,22,0,False,24,1.21
+924945A68F8A0E7A,tree,10,25.68,4,5,0,1.25,15.25,4,18,1,False,20,3.79,0,0,False,0,0,20,0,False,21,1.13,4,4,True,22,18.72,19,0,False,24,2.04
+92667BD0439E88E3,NRG,11,25.61,3,4,0,1.33,13.33,3,0,0,False,0,0,0,0,False,0,0,19,1,False,21,3.71,19,0,False,22,1.63,2,3,False,24,20.26
+E80EC0AE2EFF9621,i blast yeat 24/7 as default otter 2471,12,24.98,5,4,0,0.8,14.6,2,12,2,False,20,7.91,19,0,False,20,1.19,21,0,False,21,0.84,6,2,False,22,11.76,15,0,False,24,3.28
+893CD418101A1848,Reef21,13,23.81,5,3,0,0.6,13.8,2,19,0,False,20,1.19,11,2,False,20,8.33,9,0,False,21,5.18,21,0,False,22,1.06,9,1,False,24,8.05
+B5328517DF02E79E,Twitch.tv / Soyia777,14,21.38,5,2,0,0.4,13.6,1,15,0,False,20,2.47,10,1,False,20,6.76,10,0,False,21,4.67,16,0,False,22,2.56,17,1,False,24,4.92
+E57C104FE3FBF7C8,SCO://Lukr,15,21.1,5,2,0,0.4,15.2,2,20,0,False,20,0.9,4,2,False,20,13.46,17,0,False,21,2.03,14,0,False,22,3.24,21,0,False,24,1.48
+F3EF569A91A4395B,SCO:/Lukr,16,20.49,5,0,0,0.0,12.6,0,8,0,False,20,5.54,7,0,False,20,6.19,15,0,False,21,2.68,9,0,False,22,5.38,24,0,False,24,0.7
+EC6C654EFFBD1BE0,BigBattleToad,17,19.22,3,0,1,0.0,12.67,0,1,0,False,20,15.65,17,0,False,20,1.81,0,0,False,0,0,0,0,False,0,0,20,0,False,24,1.76
+45540417720EDF21,lady_nymeria25,18,18.92,3,1,0,0.33,10.33,1,16,0,False,20,2.13,3,1,False,20,13.0,12,0,False,21,3.79,0,0,False,0,0,0,0,False,0,0
+740318B9B876B31A,SirFishy_ツ,19,17.56,2,1,0,0.5,8.5,1,2,1,False,20,15.09,15,0,False,20,2.47,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0
+58009E34B25480ED,"get out of the game man""",20,16.97,2,1,0,0.5,6.0,1,4,1,False,20,11.43,8,0,False,20,5.54,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0
+53F9EFB9912B04AE,Mouton Binoclard,21,16.86,5,0,0,0.0,13.4,0,14,0,False,20,2.82,14,0,False,20,2.82,13,0,False,21,3.4,10,0,False,22,4.87,16,0,False,24,2.95
+AD35102974797F59,Lucas2013grant,22,13.13,5,0,0,0.0,15.6,0,11,0,False,20,4.0,20,0,False,20,0.9,18,0,False,21,1.72,15,0,False,22,2.89,14,0,False,24,3.62
+7FB05381492081DF,Nexus[KFC],23,10.74,2,0,0,0.0,12.0,0,0,0,False,0,0,0,0,False,0,0,4,0,False,21,9.39,20,0,False,22,1.34,0,0,False,0,0
+E38C0F202115394,roinkburntmyPC down so I lag,24,9.38,2,0,0,0.0,11.0,0,0,0,False,0,0,0,0,False,0,0,14,0,False,21,3.03,0,0,False,0,0,8,0,False,24,6.35
+E058B0D22C6C412F,JCIstoals,25,7.62,2,1,0,0.5,14.5,1,13,1,False,20,5.49,16,0,False,20,2.13,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0
+92ECC74739BDCF7,YaBoiGaminYT,26,5.92,2,0,0,0.0,15.5,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,18,0,False,22,1.93,13,0,False,24,3.99
+2E3BDF84C22B5C3D,ˣ×Xion,27,4.37,1,0,0,0.0,12.0,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,12,0,False,24,4.37
+C91B1463EDF55197,Trash Fox Roladka,28,3.19,2,0,0,0.0,20.0,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,17,0,False,22,2.24,23,0,False,24,0.95
+9C7CD5F00984E0DC,.E_ddie,29,3.12,2,0,0,0.0,20.0,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,22,0,False,22,0.79,18,0,False,24,2.33
+39EE89421ABC8889,[(Sαπ)³7],30,1.81,1,0,0,0.0,17.0,0,17,0,False,20,1.81,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0,0,0,False,0,0

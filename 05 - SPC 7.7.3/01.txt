@@ -1,0 +1,10 @@
+﻿pID	Player	PlayfabID	SquadID	TeamID	Kills	Placement
+1	EggsSkrambled	7B215D4B262D1349	-1	-1	2	1
+2	NRG	92667BD0439E88E3	-1	-1	0	7
+3	RichiRoyale++	402DD44A9FC23DB9	-1	-1	2	2
+7	Mouton Binoclard	53F9EFB9912B04AE	-1	-1	0	6
+5	i blast yeat 24/7 as default otter 2471	E80EC0AE2EFF9621	-1	-1	2	4
+6	lazer kiwi	4DD666C7102FDE4B	-1	-1	0	9
+8	walmart employee	924945A68F8A0E7A	-1	-1	0	8
+9	Resolv_	9FACE918A6721B19	-1	-1	0	3
+10	M_	40633242CCF78056	-1	-1	1	5
